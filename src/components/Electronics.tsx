@@ -1,15 +1,19 @@
 import React, { useEffect } from "react";
+
 import ProductItem from "../components/ProductItem";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../Redux/store";
 import { fetchProductDta } from "../Redux/thunks/Product";
 import { Product } from "../types/types";
 import Loading from "../components/Loading";
-import SearchForm from "../components/SearchForm";
+import SearchForm from "./SearchForm";
 
-export default function ProductsPage() {
-  const ProductList = useSelector(
+export default function Electronics() {
+  const ElectronicsList = useSelector(
     (state: RootState) => state.products.products
+  );
+  const filterCategory = ElectronicsList.filter(
+    (item) => item.category.name === "Clothes"
   );
   const isLoading = useSelector((state: RootState) => state.products.isLoading);
 
@@ -17,8 +21,6 @@ export default function ProductsPage() {
   useEffect(() => {
     dispatch(fetchProductDta());
   }, [dispatch]);
-  
-  
   return (
     <div>
       <SearchForm />
@@ -26,7 +28,7 @@ export default function ProductsPage() {
         <Loading />
       ) : (
         <div className="ProductListstyle">
-          {ProductList.map((item: Product) => {
+          {filterCategory.map((item: Product) => {
             return <ProductItem item={item} key={item.id} />;
           })}
         </div>
