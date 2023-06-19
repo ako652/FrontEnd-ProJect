@@ -16,7 +16,7 @@ The front end project uses React with TypeScript and Redux. Completing all requi
 5. The user can add product to Favorite page
 6. When the user add a product to Favorite the favorite icon should change the color.
 7. Have a Loading page while fetching data
-8. Deploy the project
+8. Deploy the project//    https://johnako.netlify.app/
 
 ### Styling Requirements (4 points)
 
