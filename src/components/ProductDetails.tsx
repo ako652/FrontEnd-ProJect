@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../Redux/store";
 import { fetchProductDetails } from "../Redux/thunks/Product";
@@ -15,7 +16,7 @@ export default function ProductDetails() {
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     dispatch(fetchProductDetails(result2));
-  }, [dispatch]);
+  }, [dispatch,result2]);
 
   return (
     <div>

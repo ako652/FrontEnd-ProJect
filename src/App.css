@@ -22,14 +22,16 @@ ul{
   border-radius: 10px;
 }
 .HomebackgroundImage{
-  background-image: url('/src/assets/Levante-Alore-Ocean-Blue-1-1000x1000.webp');
+  background-image: url('/src/assets/image3.jpg');
    height: 300px;
    font-weight: bold;
+   color: white;
 }
 .HomebackgroundImage2{
   background-image: url('/src/assets/image3.jpg');
    height: 300px;
   font-weight: bold;
+  color:white
 }
 .HomePagestyling{
 display: grid;

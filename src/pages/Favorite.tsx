@@ -1,4 +1,5 @@
 import ProductItem from "../components/ProductItem";
+
 import { useSelector } from "react-redux";
 import { RootState } from "../Redux/store";
 import { Product } from "../types/types";
@@ -9,18 +10,21 @@ export default function Favorite() {
     (state: RootState) => state.products.favoriteList
   );
   const isLoading = useSelector((state: RootState) => state.products.isLoading);
-
-  return (
-    <div>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <div className="ProductListstyle">
-          {FavoriteList.map((item: Product) => {
-            return <ProductItem item={item} key={item.id} />;
-          })}
-        </div>
-      )}
-    </div>
-  );
+  if (FavoriteList.length === 0) {
+    return <p>No product found yet! add your favorite product </p>;
+  } else {
+    return (
+      <div>
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <div className="ProductListstyle">
+            {FavoriteList.map((item: Product) => {
+              return <ProductItem item={item} key={item.id} />;
+            })}
+          </div>
+        )}
+      </div>
+    );
+  }
 }

@@ -1,4 +1,4 @@
-import  React from "react";
+import React from "react";
 
 import { useSelector } from "react-redux";
 import { RootState } from "../Redux/store";
@@ -12,7 +12,6 @@ import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
-
 
 const steps = ["RECEIVER", "CASH", "CONFIRMATION"];
 

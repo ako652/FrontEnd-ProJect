@@ -14,11 +14,24 @@ import LoginPage from "./components/LoginPage";
 import ProductDetails from "./components/ProductDetails";
 
 
+
+
 function App() {
+    const [checked, setChecked] = React.useState(false);
+
+    const handleChangeup = () => {
+      setChecked((prev) => !prev);
+    };
   return (
-    <div className="App ">
-      <NavBar />
-   
+    <div
+      className="App "
+      style={{
+       
+        backgroundColor: checked ? "#fff000" : "inherit", 
+      }}
+    >
+      <NavBar handleChangeup={handleChangeup} checked={checked} />
+      
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -28,7 +41,7 @@ function App() {
 
         <Route path="/Electronic" element={<Electronics />} />
         <Route path="/LoginPage" element={<LoginPage />} />
-        <Route path="/product/:id" element={<ProductDetails/>} />
+        <Route path="/product/:id" element={<ProductDetails />} />
       </Routes>
       <Footer />
     </div>

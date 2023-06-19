@@ -17,9 +17,7 @@ import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Alert from "@mui/material/Alert";
-
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
 import Button from "@mui/material/Button";
 
 interface ExpandMoreProps extends IconButtonProps {

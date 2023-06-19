@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Product, CartItem } from "../../types/types";
+import { PayloadAction } from "@reduxjs/toolkit";
 
 export type InitialState = {
   products: Product[];
@@ -37,7 +38,7 @@ const productSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    getProductData: (state, action) => {
+    getProductData: (state, action: PayloadAction<Product[]>) => {
       state.products = action.payload;
       state.isLoading = false;
     },
@@ -59,9 +60,9 @@ const productSlice = createSlice({
       }
     },
     addToCart: (state, action) => {
-      const productId = action.payload.id;
+      const productId = action.payload;
       const existingItem = state.cartItems.find(
-        (item) => item.id === productId
+        (item) => item.id === productId.id
       );
 
       if (existingItem) {
@@ -95,13 +96,12 @@ const productSlice = createSlice({
       );
       state.totalSum = totalSum;
     },
-    SearchProduct: (state, action) => {
+    SearchProduct: (state, action: PayloadAction<string>) => {
       const filters = state.products.filter((item) =>
         item.title.toLocaleLowerCase().includes(action.payload)
       );
       state.products = filters;
     },
-  
   },
 });
 

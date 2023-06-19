@@ -4,11 +4,9 @@ import { CartItem } from "../types/types";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../Redux/store";
 import { productActions } from "../Redux/slices/Product";
-import { useTheme } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import Button from "react-bootstrap/Button";
 import CardMedia from "@mui/material/CardMedia";
-
 
 type prop = {
   cartItemsList: CartItem[];
@@ -24,7 +22,7 @@ export default function CardPaymentBody({ cartItemsList }: prop) {
     dispatch(productActions.removeFromCart(product));
   }
 
-  const theme = useTheme();
+ 
 
   return (
     <div>

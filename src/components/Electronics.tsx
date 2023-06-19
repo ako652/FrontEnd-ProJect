@@ -6,7 +6,7 @@ import { AppDispatch, RootState } from "../Redux/store";
 import { fetchProductDta } from "../Redux/thunks/Product";
 import { Product } from "../types/types";
 import Loading from "../components/Loading";
-import SearchForm from "./SearchForm";
+
 
 export default function Electronics() {
   const ElectronicsList = useSelector(
@@ -23,7 +23,6 @@ export default function Electronics() {
   }, [dispatch]);
   return (
     <div>
-      <SearchForm />
       {isLoading ? (
         <Loading />
       ) : (

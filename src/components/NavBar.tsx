@@ -18,17 +18,19 @@ import Badge from "@mui/material/Badge";
 import { useSelector } from "react-redux";
 import { RootState } from "../Redux/store";
 
-
-
-export default function NavBar() {
+type Prop = {
+  checked: boolean;
+  handleChangeup: any;
+};
+export default function NavBar({ handleChangeup, checked }: Prop) {
   const [value, setValue] = React.useState(0);
-  const [auth, setAuth] = React.useState(true);
-  const favoriteList=useSelector((state:RootState)=>state.products.favoriteList)
-    const CartItems = useSelector(
-      (state: RootState) => state.products.cartItems
-    );
-    const favoritesLength=favoriteList.length
-    const cartItems=CartItems.length
+ 
+  const favoriteList = useSelector(
+    (state: RootState) => state.products.favoriteList
+  );
+  const CartItems = useSelector((state: RootState) => state.products.cartItems);
+  const favoritesLength = favoriteList.length;
+  const cartItems = CartItems.length;
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -114,8 +116,10 @@ export default function NavBar() {
                 <Tab icon={<PersonPinIcon />} label="NEARBY" />
                 <FormGroup>
                   <FormControlLabel
-                    control={<Switch aria-label="login switch" />}
-                    label={auth ? "Logout" : "Login"}
+                    control={
+                      <Switch checked={checked} onChange={handleChangeup} />
+                    }
+                    label="Show"
                   />
                 </FormGroup>
               </Tabs>
