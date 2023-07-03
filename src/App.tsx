@@ -5,7 +5,6 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import CartItems from "./pages/CartItems";
 import Favorite from "./pages/Favorite";
-
 import ProductsPage from "./pages/ProductsPage";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";

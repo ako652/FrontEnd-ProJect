@@ -2,12 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import { Product, CartItem } from "../../types/types";
 import { PayloadAction } from "@reduxjs/toolkit";
 
+
 export type InitialState = {
   products: Product[];
   favoriteList: Product[];
   isLoading: boolean;
   productDetails: Product;
   cartItems: CartItem[];
+  searchField: Product[]
 
   totalSum: number;
 };
@@ -30,6 +32,7 @@ const initialState: InitialState = {
   },
 
   cartItems: [],
+  searchField:[],
 
   totalSum: 0,
 };
@@ -42,10 +45,10 @@ const productSlice = createSlice({
       state.products = action.payload;
       state.isLoading = false;
     },
-    getProductDetail: (state, action) => {
+    getProductDetail: (state, action: PayloadAction<Product>) => {
       state.productDetails = action.payload;
     },
-    addOrRemoveFromFavorite: (state, actions) => {
+    addOrRemoveFromFavorite: (state, actions: PayloadAction<Product>) => {
       const IsProductInFavorite = state.favoriteList.some(
         (item) => item.id === actions.payload.id
       );
@@ -59,7 +62,7 @@ const productSlice = createSlice({
         state.favoriteList.push(newFavorite);
       }
     },
-    addToCart: (state, action) => {
+    addToCart: (state, action: PayloadAction<Product>) => {
       const productId = action.payload;
       const existingItem = state.cartItems.find(
         (item) => item.id === productId.id
@@ -78,7 +81,7 @@ const productSlice = createSlice({
       );
       state.totalSum = totalSum;
     },
-    removeFromCart: (state, action) => {
+    removeFromCart: (state, action: PayloadAction<Product>) => {
       const productId = action.payload.id;
       const existingItem = state.cartItems.find(
         (item) => item.id === productId
@@ -100,8 +103,25 @@ const productSlice = createSlice({
       const filters = state.products.filter((item) =>
         item.title.toLocaleLowerCase().includes(action.payload)
       );
-      state.products = filters;
+      state.searchField = filters;
     },
+    sortProductLowestPrice:(state)=>{
+     const result =state.products.sort((a,b)=>a.price -b.price)
+     state.products=result
+    },
+    sortProductHighestPrice:(state)=>{
+      const result=state.products.sort((a,b)=>b.price - a.price)
+      state.products=result
+    },
+    sortProductAZ:(state)=>{
+      const result=state.products.sort((a,b)=>a.title.localeCompare(b.title))
+      state.products=result
+    },
+    sortProductZA:(state)=>{
+      const result=state.products.sort((a,b)=>b.title.localeCompare(a.title))
+      state.products=result
+    }
+
   },
 });
 
